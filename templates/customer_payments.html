@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}My Payments{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="text-white mb-4">💳 My Payments & Bookings</h2>
+
+    <!-- FILTERS -->
+    <form method="GET" action="/customer/payments" class="row g-2 mb-4">
+        <div class="col-md-3">
+            <label class="form-label text-white-50 mb-1">Status</label>
+            <select name="status" class="form-select">
+                <option value="">All</option>
+                <option value="Pending" {% if status_filter == 'Pending' %}selected{% endif %}>Pending</option>
+                <option value="Confirmed" {% if status_filter == 'Confirmed' %}selected{% endif %}>Confirmed</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label text-white-50 mb-1">When</label>
+            <select name="when" class="form-select">
+                <option value="">All</option>
+                <option value="upcoming" {% if when_filter == 'upcoming' %}selected{% endif %}>Upcoming</option>
+                <option value="past" {% if when_filter == 'past' %}selected{% endif %}>Past</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label text-white-50 mb-1">Search Event</label>
+            <input type="text" name="q" class="form-control" placeholder="Event name..."
+                   value="{{ search_query or '' }}">
+        </div>
+        <div class="col-md-2 d-flex align-items-end gap-2">
+            <button class="btn btn-primary w-100">Filter</button>
+            <a href="/customer/payments" class="btn btn-outline-light w-100">Clear</a>
+        </div>
+    </form>
+
+    {% if payments %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover bg-white shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Qty</th>
+                    <th>Total (Rs)</th>
+                    <th>Status</th>
+                    <th>Booked At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in payments %}
+                <tr>
+                    <td>#{{ p[0] }}</td>
+                    <td>{{ p[1] }}</td>
+                    <td>{{ p[2] }}</td>
+                    <td>{{ p[3] }}</td>
+                    <td class="text-success fw-bold">{{ "%.0f"|format(p[4]) }}</td>
+                    <td>
+                        {% if p[5] == 'Pending' %}
+                            <span class="badge bg-warning text-dark">Pending</span>
+                        {% elif p[5] == 'Confirmed' %}
+                            <span class="badge bg-success">Confirmed</span>
+                        {% else %}
+                            <span class="badge bg-secondary">{{ p[5] }}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ p[6] }}</td>
+                    <td>
+                        {% if p[5] == 'Pending' %}
+                            <form method="POST" action="/pay/{{ p[0] }}" class="d-flex gap-2">
+                                <select name="payment_method" class="form-select form-select-sm" required>
+                                    <option value="JazzCash">JazzCash</option>
+                                    <option value="EasyPaisa">EasyPaisa</option>
+                                    <option value="Cash on Event">Cash on Event</option>
+                                </select>
+                                <button class="btn btn-success btn-sm">Pay Now</button>
+                            </form>
+                            <a href="/cancel/{{ p[0] }}" class="btn btn-outline-danger btn-sm mt-2">
+                                Cancel
+                            </a>
+                        {% elif p[5] == 'Confirmed' %}
+                            <span class="text-success">Paid</span>
+                        {% else %}
+                            <span class="text-muted">No action</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        No bookings found for this filter.
+        <a href="/customer/payments" class="btn btn-outline-primary btn-sm ms-2">Reset</a>
+    </div>
+    {% endif %}
+
+    <a href="/customer/dashboard" class="btn btn-outline-light mt-4">← Back to Dashboard</a>
+</div>
+{% endblock %}

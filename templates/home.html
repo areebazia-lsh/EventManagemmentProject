@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}EventBook{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card home-card border-0 shadow-lg rounded-4"
+                 style="background: linear-gradient(145deg, #eef2ff, #e0f2fe);">
+                <div class="card-body p-4 p-md-5 text-center">
+                    <h1 class="fw-bold mb-3" style="color:#111827; font-size:2.4rem;">
+                        EventBook
+                    </h1>
+
+                    <hr class="my-3" style="opacity:0.15;">
+
+                    <p class="text-muted mb-4" style="font-size:0.95rem;">
+                        Choose how you want to continue.
+                    </p>
+
+                    <div class="d-grid gap-3 mb-2">
+                        <a href="/login/customer"
+                           class="btn btn-primary btn-lg w-100 rounded-3 home-btn-primary"
+                           style="background-color:#4f46e5; border-color:#4f46e5;">
+                            Customer Login
+                        </a>
+                        <a href="/login/organizer"
+                           class="btn btn-outline-primary btn-lg w-100 rounded-3 home-btn-outline">
+                            Organizer Login
+                        </a>
+                    </div>
+
+                    <p class="text-muted mb-0" style="font-size:0.9rem;">
+                        Access your dashboard to book or manage events.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

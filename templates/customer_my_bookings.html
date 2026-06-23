@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}My Bookings{% endblock %}
+{% block content %}
+<h2 class="text-white mb-4">My Bookings</h2>
+
+{% if bookings %}
+<div class="table-responsive">
+  <table class="table table-hover bg-white">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Date</th>
+        <th>Qty</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Method</th>
+        <th>Cancel</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for b in bookings %}
+      <tr>
+        <td>{{ b[1] }}</td>
+        <td>{{ b[2] }}</td>
+        <td>{{ b[3] }}</td>
+        <td>Rs {{ b[4] }}</td>
+        <td>{{ b[5] }}</td>
+        <td>{{ b[7] }}</td>
+        <td>
+          {% if b[6] is not none and b[6] <= 30 and b[5] != 'Cancelled' %}
+            <a href="/cancel/{{ b[0] }}" class="btn btn-sm btn-danger">Cancel</a>
+          {% else %}
+            <span class="text-muted small">N/A</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<p class="text-white">No bookings yet.</p>
+{% endif %}
+{% endblock %}

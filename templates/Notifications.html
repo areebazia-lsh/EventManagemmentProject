@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Notifications{% endblock %}
+{% block content %}
+<h2 class="text-white mb-4">🔔 Notifications</h2>
+
+{% if notifications %}
+<div class="row">
+    {% for n in notifications %}
+    <div class="col-12 mb-3">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <h5 class="card-title">{{ n[1] }}</h5>
+                <p class="card-text">{{ n[2] }}</p>
+                <small class="text-muted">
+                    {% if n[3] %}
+                        {{ n[3].strftime('%Y-%m-%d %H:%M') }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </small>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info">
+    No notifications yet.
+</div>
+{% endif %}
+
+{% if session.get('role') == 'organizer' %}
+    <a href="/organizer/dashboard" class="btn btn-outline-light mt-4">← Back to Dashboard</a>
+{% elif session.get('role') == 'customer' %}
+    <a href="/customer/dashboard" class="btn btn-outline-light mt-4">← Back to Dashboard</a>
+{% else %}
+    <a href="/" class="btn btn-outline-light mt-4">← Back to Home</a>
+{% endif %}
+{% endblock %}

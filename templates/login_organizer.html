@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Organizer Login - EventBook{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card border-0 shadow-lg rounded-4"
+                 style="background: linear-gradient(145deg, #dcfce7, #e0f2fe);">
+                <div class="card-body p-4 p-md-5">
+                    <h3 class="mb-4 text-center" style="color:#111827;">Organizer Login</h3>
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label class="form-label" style="color:#374151;">Email</label>
+                            <input type="email" name="email" class="form-control form-control-lg rounded-3"
+                                   placeholder="you@company.com" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" style="color:#374151;">Password</label>
+                            <input type="password" name="password" class="form-control form-control-lg rounded-3"
+                                   placeholder="Enter your password" required>
+                        </div>
+                        <button class="btn btn-success w-100 btn-lg rounded-3"
+                                style="background-color:#16a34a; border-color:#16a34a;">
+                            Sign In
+                        </button>
+                    </form>
+                    <hr class="my-4" style="opacity:0.15;">
+<p class="text-center mb-0" style="color:#6b7280; font-size:0.95rem;">
+    Need a new account?
+    <a href="/signup" style="color:#4f46e5; text-decoration:none;">
+        Create new account
+    </a>
+</p>
+
+                    <hr class="my-4" style="opacity:0.15;">
+                    <p class="text-center mb-0" style="color:#6b7280; font-size:0.95rem;">
+                        Customer login?
+                        <a href="/login/customer" style="color:#4f46e5; text-decoration:none;">
+                            Click here
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}Login - EventBook{% endblock %}
+{% block content %}
+<div class="split-screen">
+  <div class="row g-0 w-100 h-100">
+    <!-- Customer -->
+    <div class="col-lg-5 d-flex align-items-center justify-content-center p-5">
+      <div class="card w-100 fade-in-up" style="max-width: 430px;">
+        <div class="card-body p-5">
+          <h3 class="text-center mb-4">
+            <i class="fas fa-user text-primary me-2"></i>Customer Login
+          </h3>
+          <form method="POST">
+            <input type="hidden" name="role" value="customer">
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Email</label>
+              <input type="email" name="email" class="form-control form-control-lg"
+                     placeholder="customer@example.com" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Password</label>
+              <input type="password" name="password" class="form-control form-control-lg"
+                     placeholder="Enter password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 btn-lg mb-3">
+              Login as Customer
+            </button>
+            <div class="d-flex justify-content-between small">
+              <a href="/forgot_password" class="text-decoration-none text-muted">Forgot password?</a>
+              <a href="/signup" class="text-decoration-none">Create new account</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="col-lg-2 d-none d-lg-flex align-items-center justify-content-center">
+      <div class="text-center text-white">
+        <div class="divider-line mb-3"></div>
+        <h5 class="fw-bold">OR</h5>
+        <div class="divider-line mt-3"></div>
+      </div>
+    </div>
+
+    <!-- Organizer -->
+    <div class="col-lg-5 d-flex align-items-center justify-content-center p-5">
+      <div class="card w-100 fade-in-up" style="max-width: 430px;">
+        <div class="card-body p-5">
+          <h3 class="text-center mb-4">
+            <i class="fas fa-crown text-warning me-2"></i>Organizer Login
+          </h3>
+          <form method="POST">
+            <input type="hidden" name="role" value="organizer">
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Email</label>
+              <input type="email" name="email" class="form-control form-control-lg"
+                     placeholder="organizer@example.com" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Password</label>
+              <input type="password" name="password" class="form-control form-control-lg"
+                     placeholder="Enter password" required>
+            </div>
+            <button type="submit" class="btn btn-warning w-100 btn-lg text-dark fw-bold mb-3">
+              Login as Organizer
+            </button>
+            <div class="d-flex justify-content-between small">
+              <a href="/forgot_password" class="text-decoration-none text-muted">Forgot password?</a>
+              <a href="/signup" class="text-decoration-none">Create new account</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.divider-line {
+  width: 3px;
+  height: 80px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 10px;
+  margin: 0 auto;
+}
+@media (max-width: 991px) {
+  .split-screen { flex-direction: column; padding-top: 40px; }
+}
+</style>
+{% endblock %}

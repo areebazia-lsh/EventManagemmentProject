@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container text-center">
+    <h2>🎫 Your Ticket</h2>
+    <div class="card mx-auto" style="max-width: 500px;">
+        <div class="card-body">
+            <h4>{{ ticket[1] }}</h4>  <!-- event_name -->
+            <p>📅 {{ ticket[2] }} | {{ ticket[3] }}<br>📍 {{ ticket[4] }}</p>
+            <img src="data:image/png;base64,{{ qr_img }}" class="img-fluid mb-3">
+            <p class="small">Show this QR at venue</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

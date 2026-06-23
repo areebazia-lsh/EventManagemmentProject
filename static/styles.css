@@ -1,0 +1,99 @@
+/* Body Gradient Background */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #fdf6fa 0%, #e6f0ff 100%);
+    min-height: 100vh;
+}
+
+/* Navbar Gradient */
+.navbar {
+    background: linear-gradient(90deg, #7f00ff 0%, #e100ff 100%);
+    border-radius: 0 0 15px 15px;
+    padding: 0.8rem 1rem;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #fff !important;
+}
+
+.navbar-nav .nav-link {
+    font-weight: bold;
+    color: #fff !important;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffd6ff !important;
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Cards */
+.card {
+    border-radius: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+    background: #ffffffcc; /* semi-transparent */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(45deg, #7f00ff 0%, #e100ff 100%);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.btn-success {
+    background: linear-gradient(45deg, #43e97b 0%, #38f9d7 100%);
+    border: none;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Input Fields */
+input, textarea, select {
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    transition: box-shadow 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #7f00ff;
+    box-shadow: 0 0 8px rgba(127,0,255,0.3);
+}
+
+/* Card Titles */
+.card-title {
+    color: #7f00ff;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Paragraph Text */
+.card-text {
+    color: #555;
+}
+
+/* Page Headers */
+h2 {
+    font-weight: bold;
+    color: #333;
+}

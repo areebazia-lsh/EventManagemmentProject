@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Add Event{% endblock %}
+{% block content %}
+<h2 class="text-white">➕ Create New Event</h2>
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+
+        {# Flash errors: seats > capacity, etc. #}
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-danger py-2 mb-3">
+              {% for m in messages %}
+                <div>{{ m }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" class="card p-4 shadow-lg">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Event Name</label>
+                    <input type="text" name="name" class="form-control" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Price (Rs)</label>
+                    <input type="number" name="price" step="0.01" class="form-control" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label>Date</label>
+                    <input type="date" name="date" class="form-control" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label>Time (Optional)</label>
+                    <input type="time" name="time" class="form-control">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label>Total Seats</label>
+                    <input type="number" name="seats" class="form-control" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label>Venue</label>
+                <select name="venue" class="form-select" required>
+                    <option value="">Select Venue</option>
+                    {% for v in venues %}
+                    <option value="{{ v[0] }}"
+                            {% if selected_venue_id == v[0] %}selected{% endif %}>
+                        {{ v[1] }} ({{ v[2] }}) - {{ v[3] }} seats
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class="btn btn-primary w-100">Create Event</button>
+            <a href="/organizer/dashboard" class="btn btn-outline-secondary w-100 mt-2">← Back</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>Make Payment</title></head>
+<body>
+    <h2>Complete Payment</h2>
+    <p>Event: <strong>{{ booking[1] }}</strong></p>
+    <p>Amount: <strong>₹{{ booking[2] }}</strong></p>
+
+    <form method="POST">
+        <label>Payment Method:</label><br>
+        <select name="payment_method" required>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Debit Card">Debit Card</option>
+            <option value="UPI">UPI</option>
+            <option value="Cash">Cash on Event Day</option>
+        </select><br><br>
+        <button type="submit" style="padding:12px 30px; font-size:16px; background:green; color:white;">
+            Pay ₹{{ booking[2] }}
+        </button>
+    </form>
+    <br>
+    <a href="/customer/dashboard">← Back</a>
+</body>
+</html>

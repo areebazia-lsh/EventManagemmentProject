@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Book Event{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="text-white mb-4">🎫 Book: {{ event[1] }}</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow-lg mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event[1] }}</h5>
+                    <p class="card-text">
+                        📅 <strong>{{ event[2] }}</strong><br>
+                        ⏰ <strong>{{ event[3] or 'TBA' }}</strong><br>
+                        📍 <strong>{{ event[5] }}</strong><br>
+                        💰 <span class="text-success fs-5">Rs {{ "%.0f"|format(event[4]) }}</span><br>
+                        💺 <span class="text-success">{{ available }}</span> seats available
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <form method="POST" class="bg-dark p-4 rounded shadow-lg">
+                <div class="mb-3">
+                    <label class="form-label text-white">Quantity</label>
+                    <input type="number" name="quantity" class="form-control" min="1" max="{{ available }}" required>
+                    <small class="text-muted">Max {{ available }} seats available</small>
+                </div>
+
+                <button class="btn btn-primary w-100 mt-2">
+                    Confirm Booking
+                </button>
+                <a href="/customer/dashboard" class="btn btn-outline-light w-100 mt-2">
+                    Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
